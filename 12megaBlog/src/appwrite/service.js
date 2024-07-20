@@ -30,6 +30,7 @@ export class Service{
             )
         } catch (error) {
             console.log("Appwrite serive :: createPost :: error", error);
+            throw error;
         }
     }
 
@@ -49,6 +50,7 @@ export class Service{
             )
         } catch (error) {
             console.log("Appwrite serive :: updatePost :: error", error);
+            throw error;
         }
     }
 

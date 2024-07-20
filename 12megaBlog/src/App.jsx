@@ -9,6 +9,16 @@ function App() {
   const [loading , setLoading] = useState(true);
   const dispatch = useDispatch();
 
+  useEffect(() => {
+    const handleContextMenu = (event) => {
+      event.preventDefault();
+    };
+    document.addEventListener('contextmenu', handleContextMenu);
+    return () => {
+      document.removeEventListener('contextmenu', handleContextMenu);
+    };
+  }, []);
+
   useEffect(()=>{
     authService.getCurrentUser()
       .then((userData)=>{
@@ -24,10 +34,10 @@ function App() {
 
   return !loading ? (
     <div className='min-h-screen flex flex-wrap content-between bg-gray-400'>
-      <div className='w-full block'>
+      <div className='w-full min-h-screen flex flex-col'>
         <Header />
-        <main>
-        TODO:  <Outlet />
+        <main className="flex-grow p-4">
+        <Outlet />
         </main>
         <Footer />
       </div>
